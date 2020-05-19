@@ -1,2 +1,4 @@
 freethedsp.so
 demo/testdsp
+*.swp
+a.out

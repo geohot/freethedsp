@@ -1,0 +1,4 @@
+interface calculator {
+  long sum(in sequence<long> vec, rout long long res);
+};
+
