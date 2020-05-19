@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <assert.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include <linux/limits.h>
+
+#include "calculator.h"
 
 void fix_path() {
   char my_path[PATH_MAX+1];
@@ -19,11 +23,11 @@ int main(int argc, char *argv[]) {
 
   int vec[0x100];
   for (int i = 0; i < 0x100; i++) vec[i] = 1;
-  unsigned long res = 0;
+  int64 res = 0;
 
   int ret = calculator_sum(vec, 0x100, &res);
   assert(ret == 0);
-  printf("got %ld\n", res);
+  printf("got %lld\n", res);
   assert(res == 0x100);
 }
 
