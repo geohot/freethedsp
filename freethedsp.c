@@ -7,7 +7,7 @@
 //   2. Try to run it on your phone
 //   3. Be very sad when "adsprpc ... dlopen error: ... signature verify start failed for ..." appears in logcat
 // ...here is where people would give up before freethedsp
-//   4. Compile freethedsp with 'clang -shared freethedsp.c -o freethedsp.so' (or statically link it to your program)
+//   4. Compile freethedsp with 'clang -Iinclude -shared freethedsp.c -o freethedsp.so' (or statically link it to your program)
 //   5. Run your program with 'LD_PRELOAD=./freethedsp.so ./<your_prog>'
 //   6. OMG THE DSP WORKS
 //   7. Be happy.
@@ -28,7 +28,7 @@
 #include <dlfcn.h>
 #include <assert.h>
 #include <stdlib.h>
-#include <unistd.h>
+int close(int fd);
 
 // ioctl stuff
 #define IOC_OUT   0x40000000  /* copy out parameters */
