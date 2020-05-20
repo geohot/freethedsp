@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 
   int ret = calculator_sum(vec, 0x100, &res);
   assert(ret == 0);
-  printf("got %lld\n", res);
+  printf("got 0x%llx\n", res);
   assert(res == 0x100);
 }
 
