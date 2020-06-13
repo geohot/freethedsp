@@ -27,7 +27,10 @@
 #include <stdio.h>
 #include <dlfcn.h>
 #include <assert.h>
+#include <string.h>
+#include <stdint.h>
 #include <stdlib.h>
+#include <fcntl.h>
 int close(int fd);
 
 // ioctl stuff
@@ -59,10 +62,10 @@ struct ion_flush_data {
 
 struct fastrpc_ioctl_init {
   uint32_t flags;   /* one of FASTRPC_INIT_* macros */
-  uintptr_t __user file;  /* pointer to elf file */
+  uintptr_t file;  /* pointer to elf file */
   int32_t filelen;  /* elf file length */
   int32_t filefd;   /* ION fd for the file */
-  uintptr_t __user mem; /* mem for the PD */
+  uintptr_t mem; /* mem for the PD */
   int32_t memlen;   /* mem length */
   int32_t memfd;    /* ION fd for the mem */
 };
@@ -73,6 +76,9 @@ int ioctl(int fd, unsigned long request, void *arg) {
 
   if (handle == NULL) {
     handle = dlopen("/system/lib64/libc.so", RTLD_LAZY);
+    if (handle == NULL) {
+      handle = dlopen("/lib/aarch64-linux-gnu/libc.so.6", RTLD_LAZY);
+    }
     assert(handle != NULL);
     orig_ioctl = dlsym(handle, "ioctl");
   }

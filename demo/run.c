@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include <linux/limits.h>
 
 #include "calculator.h"
